@@ -7,9 +7,9 @@
         <!--Modulo-->
         <p>
             <label for="input_30" class="et_pb_contact_form_label">
-                Razão Social
+            Código Promocional
             </label>
-            <input type="text" id="input_30" class="input"
+            <input type="text" id="input_30" class="promocode_field input"
                    name="promocode"
                    placeholder="Código de Promoção"
                    >

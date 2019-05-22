@@ -196,7 +196,10 @@ class GerenciadorCertificados
               // Product Code
           }  else if (strpos($cpf->erro->mensagem, 'roduto ou validade')) {
             $this->setFeedback('alert-danger', '<b>Produto</b> ou <b>validade</b> inválido.');
-          } else {
+            // Promocode
+          } else if(strpos($cpf->erro->mensagem, 'odigo do Promocode Invalido')){
+            $this->setFeedback('alert-danger', '<b>Codigo de Promoção</b> inválido.');
+          }else {
               // Normal, um erro inesperado
               // Para debug
               // $this->setFeedback('alert-danger', $cpf->erro->mensagem);
@@ -502,9 +505,12 @@ class GerenciadorCertificados
         // Product Code
       } else if (strpos($resposta->erro->mensagem, 'roduto ou validade')) {
         $this->setFeedback('alert-danger', '<b>Produto</b> ou <b>validade</b> inválido.');
+        // Promocode
+      } else if(strpos($resposta->erro->mensagem, 'odigo do Promocode Invalido')){
+        $this->setFeedback('alert-danger', '<b>Codigo de Promoção</b> inválido.');
       }else {
         // Normal
-        //                    $this->setFeedback('alert-danger', $resposta->erro->mensagem);
+        // $this->setFeedback('alert-danger', $resposta->erro->mensagem);
         $this->setFeedback('alert-danger', "Formulário não enviado. Tente novamente em alguns segundos.");
       }
     }

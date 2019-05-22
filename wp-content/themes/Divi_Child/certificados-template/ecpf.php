@@ -109,21 +109,20 @@ $api = new GerenciadorCertificados('ecpf', $_POST);
                                     <h5>Possui um código promocional?</h5>
                                     <hr>
 
-                                    <div class="row mb-2">
+                                    <div class="row mb-2 wrap_promocode">
                                         <div class="col-sm-6">
                                             <!--Modulo-->
                                             <p>
                                                 <label for="input_30" class="et_pb_contact_form_label">
-                                                    Razão Social
+                                                    Código Promocional
                                                 </label>
-                                                <input type="text" id="input_30" class="input"
+                                                <input type="text" id="input_30" class="promocode_field input"
                                                     name="promocode"
                                                     placeholder="Código de Promoção"
                                                     >
                                             </p>
                                             <!--Modulo-->
                                         </div>
-
                                     </div>
 
                                     <br>

@@ -803,3 +803,15 @@ select.input{
     max-width: 900px !important;
     margin: auto !important;
 }
+
+
+.green_promocode{
+    color: #fff;
+    line-height: 62px;
+    text-align: center;
+    height: 62px;
+    font-size: 20px;
+    border: 1px solid green;
+    background-color: #19b419;
+    box-sizing: border-box;
+}

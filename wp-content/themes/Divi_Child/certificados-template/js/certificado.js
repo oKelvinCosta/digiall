@@ -3,6 +3,25 @@ jQuery(function ($) {
 // Descricao
 // JS Utilizado para tratar form client side e algumas outras funcionalidades
 
+    // Promocode ----------------------------------------
+
+    $('.promocode_field').blur(function(){
+        // var output_desconto = "<p class='green_promocode'><b>Desconto de 6%</b></p>";
+        
+        // Dependendo de como estarão os códigos,
+        // terá que fazer ajax para consultar os preços e mostrar com desconto.
+        // Para facilitar, acho que só informar o valor percentual que será descontado pode funcionar em ultimo caso
+        // $.ajax({
+        //     url: url,
+        //     method: 'post',
+        //     success: function (data) {
+        //     },
+        //     error: function (data) {
+        //     }
+        // });
+        // Testar requisições ajax para arquivos php dentro do wordpress para preparar o caminho
+
+    });
 
 
     // Scroll ----------------------------------------
