@@ -11,9 +11,10 @@
 
                 <div class="et_pb_text_inner">
 
-                    <h2>Contato</h2>
-                    <p>(31) 2534.6596</p>
-                    <p>contato@digiallsolucoes.com.br</p>
+                    <h2 class="family_poppins">Contato</h2>
+                    <p class="family_poppins">(31) 2527-3555</p>
+                    <p class="family_poppins">(31) 99914-2342</p>
+                    <p class="family_poppins">contato@digiallsolucoes.com.br</p>
                 </div>
             </div> <!-- .et_pb_text -->
         </div> <!-- .et_pb_column -->
@@ -25,9 +26,9 @@
 
 
                 <div class="et_pb_text_inner">
-                    <h2>Endereço</h2>
-                    <p>Rua Tamoios 666, 7º andar.</p>
-                    <p>Belo Horizonte - MG&nbsp;</p>
+                    <h2 class="family_poppins">Endereço</h2>
+                    <p class="family_poppins">Rua Tamoios 666, 2º andar - sala 201.</p>
+                    <p class="family_poppins">Belo Horizonte - MG&nbsp;</p>
                 </div>
             </div> <!-- .et_pb_text -->
 
