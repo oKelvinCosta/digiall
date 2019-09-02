@@ -31,8 +31,10 @@ class GerenciadorCertificados
      */
     private $authType = [
         'client_name' => 'digiall',
-        // 'auth_token' => '213ldujnepcask8723cnPROD'
-        'auth_token' => '213ldujnepcask8723cnaiuk'
+        // PROD
+        'auth_token' => '213ldujnepcask8723cnPROD'
+        // DEV
+        // 'auth_token' => '213ldujnepcask8723cnaiuk'
     ];
     /**
      * @var string ecpf, ecnpj ou nfe
