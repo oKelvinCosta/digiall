@@ -1,27 +1,27 @@
 jQuery(function ($) {
 
-// Descricao
-// JS Utilizado para tratar form client side e algumas outras funcionalidades
+    // Descricao
+    // JS Utilizado para tratar form client side e algumas outras funcionalidades
 
     // Promocode ----------------------------------------
 
-    $('.promocode_field').blur(function(){
-        // var output_desconto = "<p class='green_promocode'><b>Desconto de 6%</b></p>";
-        
-        // Dependendo de como estarão os códigos,
-        // terá que fazer ajax para consultar os preços e mostrar com desconto.
-        // Para facilitar, acho que só informar o valor percentual que será descontado pode funcionar em ultimo caso
-        // $.ajax({
-        //     url: url,
-        //     method: 'post',
-        //     success: function (data) {
-        //     },
-        //     error: function (data) {
-        //     }
-        // });
-        // Testar requisições ajax para arquivos php dentro do wordpress para preparar o caminho
+    // $('.promocode_field').blur(function(){
+    // var output_desconto = "<p class='green_promocode'><b>Desconto de 6%</b></p>";
 
-    });
+    // Dependendo de como estarão os códigos,
+    // terá que fazer ajax para consultar os preços e mostrar com desconto.
+    // Para facilitar, acho que só informar o valor percentual que será descontado pode funcionar em ultimo caso
+    // $.ajax({
+    //     url: url,
+    //     method: 'post',
+    //     success: function (data) {
+    //     },
+    //     error: function (data) {
+    //     }
+    // });
+    // Testar requisições ajax para arquivos php dentro do wordpress para preparar o caminho
+
+    // });
 
 
     // Scroll ----------------------------------------
@@ -30,30 +30,30 @@ jQuery(function ($) {
     var valorCalculavel = '0';
     $('.radio > label').on('click', function (event) {
 
-    
+
         valorIncalculavel = $(this).children('.precoFinal').html();
-        valorCalculavel = parseFloat(valorIncalculavel.replace(',','.'));
-        
+        valorCalculavel = parseFloat(valorIncalculavel.replace(',', '.'));
+
         $('.parcela_valor').html('');
 
-        for(var i = 1; i<7; i++){
-                   
+        for (var i = 1; i < 7; i++) {
+
             // Valor Float Calculavel JS
             var parcelaCalculavel = valorCalculavel / i;
 
-            
-            var parcelaIncalculavel = String(parcelaCalculavel.toFixed(2)).replace('.',',');
 
-            
-            if( parcelaCalculavel<20 ){
-                
-            }else{
-                $('.parcela_valor').append('<option value="'+i+'">'+i+'x - R$ '+parcelaIncalculavel+'</option>');
+            var parcelaIncalculavel = String(parcelaCalculavel.toFixed(2)).replace('.', ',');
+
+
+            if (parcelaCalculavel < 20) {
+
+            } else {
+                $('.parcela_valor').append('<option value="' + i + '">' + i + 'x - R$ ' + parcelaIncalculavel + '</option>');
             }
-            
+
 
         }
-        
+
 
         var id = $('.radio_ancora'),
             targetOffset = $(id).offset().top;
@@ -76,27 +76,27 @@ jQuery(function ($) {
     var pagamentoCartao = $(".switchPagamento.cartao");
     var metodo_cartao = $(".metodo_cartao");
 
-    pagamentoBoleto.click(function(){
+    pagamentoBoleto.click(function () {
         $(this).addClass("active");
         pagamentoCartao.removeClass("active");
         metodo_cartao.hide();
 
         $(".metodo_cartao .input").css({
-            "display":"none"
+            "display": "none"
         });
         $(".metodo_cartao .input").attr('hidden', 'true');
-        
+
 
         $(".metodo_cartao .input").removeAttr('required');
     });
 
-    pagamentoCartao.click(function(){
+    pagamentoCartao.click(function () {
         $(this).addClass("active");
         pagamentoBoleto.removeClass("active");
         metodo_cartao.show();
 
         $(".metodo_cartao .input").css({
-            "display":"inline-block"
+            "display": "inline-block"
         });
         $(".metodo_cartao .input").removeAttr('hidden');
 
@@ -109,11 +109,35 @@ jQuery(function ($) {
     $('.cpf_input').mask('000.000.000-00');
     $('.cnpj_input').mask('00.000.000/0000-00');
     $('.ddd_input').mask('000');
-    $('.data_nascimento_input').mask('00/00/0000', {placeholder: "Nascimento: DD/MM/AAAA"});
+    $('.data_nascimento_input').mask('00/00/0000', { placeholder: "Nascimento: DD/MM/AAAA" });
     $('.cep_api').mask('00000-000');
 
-    $('.card_number').mask("# ###0 0000", {reverse: true});
+    $('.card_number').mask("# ###0 0000", { reverse: true });
 
+
+    // Conferência de senha ----------------------------------------
+
+    // Se ouver Blur em algum dos campos, e os 2 campos já estão preencidos a conferência ocorrerá no Blur de algum dos campos
+    $('.senha_1').blur(function(){
+        
+        let senha1 = $('.senha_1').val();
+        let senha2 = $('.senha_2').val();
+        if(senha1 && senha2 && senha1 !== senha2){
+            $('.senha_1').val('');
+            $('.senha_2').val('');
+            $('#form-alert').html('<div class="alert alert-danger">Senhas não batem.</div>');
+        }
+    });
+
+    $('.senha_2').blur(function(){
+        let senha1 = $('.senha_1').val();
+        let senha2 = $('.senha_2').val();
+        if(senha1 && senha2 && senha1 !== senha2){
+            $('.senha_1').val('');
+            $('.senha_2').val('');
+            $('#form-alert').html('<div class="alert alert-danger">Senhas não batem.</div>');
+        }
+    });
 
     // API CEP ----------------------------------------
 
@@ -122,7 +146,7 @@ jQuery(function ($) {
 
     cep.on('blur', function (e) {
 
-        if(!this.value){
+        if (!this.value) {
             $('.financial_state').val('');
             $('.cidade').val('');
             $('.financial_location').val('');
@@ -132,7 +156,7 @@ jQuery(function ($) {
 
         // Tira o hífen para fazer a procura
         var value = this.value.split('-');
-        value = value[0]+value[1];
+        value = value[0] + value[1];
 
         var url = 'https://viacep.com.br/ws/' + value + '/json/';
 
@@ -143,7 +167,7 @@ jQuery(function ($) {
                 // console.log(data);
 
                 // Preenche campos com os dados
-                if(data && data['bairro']) {
+                if (data && data['bairro']) {
 
                     var financial_state = data.uf;
                     var cidade = data.localidade;
@@ -158,7 +182,7 @@ jQuery(function ($) {
                     $('.financial_neighborhood').val(financial_neighborhood);
                     $('#form-alert').html('');
 
-                }else if(data['erro'] == true){
+                } else if (data['erro'] == true) {
 
                     $('.financial_state').val('');
                     $('.cidade').val('');

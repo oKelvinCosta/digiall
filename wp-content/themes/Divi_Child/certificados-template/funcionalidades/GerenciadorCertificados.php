@@ -11,7 +11,9 @@
 
 
 
-
+// Códigos promocionais para teste PROD
+// DVMKVESF  - muda o preço após a compra, enviando o preço no email com a diferença
+// CBKWVFEO - não muda o preço hora nenhuma, é para a comissão
 
 class GerenciadorCertificados
 {
@@ -32,9 +34,9 @@ class GerenciadorCertificados
     private $authType = [
         'client_name' => 'digiall',
         // PROD
-        'auth_token' => '213ldujnepcask8723cnPROD'
+        // 'auth_token' => '213ldujnepcask8723cnPROD'
         // DEV
-        // 'auth_token' => '213ldujnepcask8723cnaiuk'
+        'auth_token' => '213ldujnepcask8723cnaiuk'
     ];
     /**
      * @var string ecpf, ecnpj ou nfe
@@ -101,6 +103,7 @@ class GerenciadorCertificados
         $this->post['product_code'] = explode('_', $code)[0];
 
         $this->post = HelperCertificados::sanitizador($this->post);
+        
 
         $this->field = $this->post;
         $this->field['product_code_complement'] = explode('_', $code)[1];
@@ -108,22 +111,10 @@ class GerenciadorCertificados
 
         
         
-        
-            // echo "<br>";
-            // echo "<br>";
-            // echo "<br>";
-            // echo "<br>";
-            // echo"<pre>";
-            // print_r($this->field);
-            // echo"</pre>";
-            // echo "<br>";
-            // echo"<pre>";
-            // print_r($this->post);
-            // echo"</pre>";
-            // echo"<pre>";
-            // print_r($this->$tipo);
-            // echo"</pre>";
-            // die;
+        // HelperCertificados::debug($this->field);
+        // HelperCertificados::debug($this->post);
+        // HelperCertificados::debug($this->tipo, true);
+            
             
             
 
@@ -156,27 +147,10 @@ class GerenciadorCertificados
 
       
       
-      
-      // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo"<pre>";
-      // print_r($pagamento_credito);
-      // echo "</pre>";
-      // die;
-
       $cpf = $Soap->CreateCertificate_ECPF($this->authType, $this->orderType, $this->cpfCertType);
       $cpf = simplexml_load_string($cpf);
 
-     // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo"<pre>";
-      // print_r($pagamento_credito);
-      // echo "</pre>";
-      // die;
+      // HelperCertificados::debug($cpf, true);
 
       if ($cpf->resultado == 'Erro') {
           // CPF inválido
@@ -217,22 +191,21 @@ class GerenciadorCertificados
             $this->CompraCredito($cpf, $Soap);
 
         }else{
+          // SUCESSO
           // Para pagar com Boleto
-          $this->setFeedback('alert-success', "Solicitação enviada para <b>Email</b> com Sucesso! Você receberá o boleto para efetuar o pagamento.");
+          // HelperCertificados::debug($cpf, true);
+
+          $orderId = $cpf->orderid;
+          $this->setFeedback('alert-success', "Pedido <b>{$orderId}</b> solicitado com sucesso! Boleto enviado para seu <b>Email</b>.");
           SendEmail::selfEmail($this->tipo, $this->field);
         }
 
       }
-      // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo"<pre>";
-      // print_r($cpf);
-      // echo"</pre>";
       
-      // print_r($this->showFeedback());
+      // HelperCertificados::debug($cpf);
+      // HelperCertificados::debug($this->showFeedback(), true);
 
-      // die;
+      
     }
 
     private function setECNPJ(){
@@ -247,52 +220,22 @@ class GerenciadorCertificados
       // CNPJ normal
       if (strpos($this->orderType['product_code'], 'C91RPJA3') === false) {
 
-        // echo "<br>";
-        // echo "<br>";
-        // echo "<br>";
-        // echo "<br>";
-        // echo"<pre>";
-        // print_r('CNPJ A3');
-        //   echo "<br>";
-        // print_r($this->orderType['product_code']);
-        // echo"</pre>";
-        // die;
+           // HelperCertificados::debug($this->orderType['product_code'], true);
 
           $resposta = $Soap->CreateCertificate_CNPJ($this->authType, $this->orderType, $this->cnpjCertType);
           $resposta = simplexml_load_string($resposta);
       } else {
 
-        // echo "<br>";
-        // echo "<br>";
-        // echo "<br>";
-        // echo "<br>";
-        // echo"<pre>";
-        // print_r('ME, EPP, MEI');
-        // echo"</pre>";
-        // die;
-
+        
           // CNPJ ME, EPP, MEI
           $resposta = $Soap->CreateCertificate_ME($this->authType, $this->orderType, $this->cnpjCertType);
           $resposta = simplexml_load_string($resposta);
       }
 
 
-      // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo"<pre>";
-      // print_r($resposta);
-      // echo"</pre>";
-      // echo "<br>";
-      // echo"<pre>";
-      // print_r($this->cnpjCertType);
-      // echo"</pre>";
-      // echo"<pre>";
-      // print_r($this->orderType);
-      // echo"</pre>";
-      // die;
-
-
+      // HelperCertificados::debug($resposta);
+      // HelperCertificados::debug($this->cnpjCertType);
+      // HelperCertificados::debug($this->orderType, true);
 
 
       if ($resposta->resultado == 'Erro') {
@@ -310,24 +253,17 @@ class GerenciadorCertificados
           $this->CompraCredito($resposta, $Soap);
 
         }else{
+          // SUCESSO
           // Para pagar com Boleto
-          $this->setFeedback('alert-success', "Solicitação enviada para <b>Email</b> com Sucesso! Você receberá o boleto para efetuar o pagamento.");
+          $orderId = $resposta->orderid;
+          $this->setFeedback('alert-success', "Pedido <b>{$orderId}</b> solicitado com sucesso! Boleto enviado para seu <b>Email</b>.");
           SendEmail::selfEmail($this->tipo, $this->field);
         }
 
       }
 
-
-      // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo"<pre>";
-      // var_dump($resposta);
-      // echo"</pre>";
-      
-      // print_r($this->showFeedback());
-
-      // die;
+      // HelperCertificados::debug($resposta);
+      // HelperCertificados::debug($this->showFeedback(), true);
       
     }
 
@@ -345,25 +281,9 @@ class GerenciadorCertificados
           header("Location:" . get_permalink());
       }
 
-
-      //            echo "<br>";
-      //            echo "<br>";
-      //            echo "<br>";
-      //            echo "<br>";
-      //            echo"<pre>";
-      //            print_r($resposta);
-      //            echo"</pre>";
-      //            echo "<br>";
-      //            echo"<pre>";
-      //            print_r($this->cnpjCertType);
-      //            echo"</pre>";
-      //            echo"<pre>";
-      //            print_r($this->orderType);
-      //            echo"</pre>";
-      //            die;
-
-
-      
+      // HelperCertificados::debug($resposta);
+      // HelperCertificados::debug($this->cnpjCertType);
+      // HelperCertificados::debug($this->orderType, true);
 
       if ($resposta->resultado == 'Erro') {
         $this->TratamentoErrosBoletoECNPJeNFE($resposta);
@@ -376,24 +296,20 @@ class GerenciadorCertificados
           $this->CompraCredito($resposta, $Soap);
 
         }else{
-          // Para pagar com Boleto
-          $this->setFeedback('alert-success', "Solicitação enviada para <b>Email</b> com Sucesso! Você receberá o boleto para efetuar o pagamento.");
+          // SUCESSO
+
+          // HelperCertificados::debug($resposta, true);
+
+          $orderId = $resposta->orderid;
+          $this->setFeedback('alert-success', "Pedido <b>{$orderId}</b> solicitado com sucesso! Boleto enviado para seu <b>Email</b>.");
+          
           SendEmail::selfEmail($this->tipo, $this->field);
         }
         
       }
 
-
-      // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo"<pre>";
-      // var_dump($resposta);
-      // echo"</pre>";
-      
-      // print_r($this->showFeedback());
-
-      // die;
+      // HelperCertificados::debug($resposta);
+      // HelperCertificados::debug($this->showFeedback(), true);
 
     }
 
@@ -427,17 +343,11 @@ class GerenciadorCertificados
       $respostaCredito = simplexml_load_string($pagamento_credito);
       
 
-      // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo"<pre>";
-      // print_r($respostaCredito);
-      // echo"</pre>";
-      // die;
 
       if($respostaCredito->resultado == 'Erro'){
         $this->setFeedback('alert-danger', "Compra não efetuada. Tente novamente em alguns segundos.");
         return;
+
       }
 
       
@@ -461,19 +371,17 @@ class GerenciadorCertificados
           $this->setFeedback('alert-danger', "Compra não efetuada. Tente novamente em alguns segundos.");
         }
 
-      //   echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo"<pre>";
-      // print_r($respostaCredito);
-      // echo"</pre>";
-      
-      // print_r($this->showFeedback());
-
-      // die;
+        
+        
+      //   HelperCertificados::debug($this->paymentCard);
+      //   HelperCertificados::debug($respostaCredito);
+      // HelperCertificados::debug($this->showFeedback(), true);
         
       }else{
-        $this->setFeedback('alert-success', "Compra realizada com Sucesso! Acompanhe sua compra pelo email.");
+        // SUCESSO
+        $orderId = $respostaCredito->orderid;
+        $this->setFeedback('alert-success', "Pedido <b>{$orderId}</b> realizado com sucesso! Acompanhe sua compra pelo <b>Email</b>.");
+
         SendEmail::selfEmail($this->tipo, $this->field);
       }
     }
@@ -520,7 +428,7 @@ class GerenciadorCertificados
 
 
     /**
-     * Separa/organiza para os atributos certos os dados da Pessoa para setar OrderType
+     * Separa/organiza para os atributos certos, os dados da Pessoa para setar OrderType
      */
     private function separaDadosPessoa(){
       
@@ -550,6 +458,7 @@ class GerenciadorCertificados
       unset($this->post['data_nascimento']);
       unset($this->post['revogation_passphrase']);
       unset($this->post['documento_identificacao']);
+      unset($this->post['revogation_passphrase_2']);
 
       // Tira dados de pagamento de cartao credito
       unset($this->post['card_number']);
@@ -568,7 +477,7 @@ class GerenciadorCertificados
     }
 
     /**
-     * Separa/organiza para os atributos certos os dados de Empresa para setar OrderType
+     * Separa/organiza para os atributos certos, os dados de Empresa para setar OrderType
      */
     private function separaDadosEmpresa()
     {
@@ -602,6 +511,7 @@ class GerenciadorCertificados
         unset($this->post['data_nascimento']);
         unset($this->post['revogation_passphrase']);
         unset($this->post['documento_identificacao']);
+        unset($this->post['revogation_passphrase_2']);
 
         // Tira dados de pagamento de cartao credito
         unset($this->post['card_number']);

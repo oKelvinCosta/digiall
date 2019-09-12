@@ -9,12 +9,12 @@
                  style="">
 
 
-                <div class="et_pb_text_inner">
+                <div class="et_pb_text_inner contact_footer">
 
                     <h2 class="family_poppins">Contato</h2>
                     <p class="family_poppins">(31) 2527-3555</p>
                     <p class="family_poppins">(31) 99914-2342</p>
-                    <p class="family_poppins">contato@digiallsolucoes.com.br</p>
+                    <p class="family_poppins">contato@digiallsolutions.com</p>
                 </div>
             </div> <!-- .et_pb_text -->
         </div> <!-- .et_pb_column -->
@@ -25,10 +25,10 @@
                  style="">
 
 
-                <div class="et_pb_text_inner">
+                <div class="et_pb_text_inner adress_footer">
                     <h2 class="family_poppins">Endereço</h2>
                     <p class="family_poppins">Rua Tamoios 666, 2º andar - sala 201.</p>
-                    <p class="family_poppins">Belo Horizonte - MG&nbsp;</p>
+                    <p class="family_poppins">Centro - Belo Horizonte - MG&nbsp;</p>
                 </div>
             </div> <!-- .et_pb_text -->
 

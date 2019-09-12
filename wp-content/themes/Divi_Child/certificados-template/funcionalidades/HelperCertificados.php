@@ -67,6 +67,27 @@ class HelperCertificados{
     ];
 
     
+/**
+     * Varre Array para segunraça
+     * @param $array
+     * @return array O array para visualizar pré-formatado
+     */
+    public static function debug($array, $die = null)
+    {
+       echo "<hr>";
+       echo "<br>";
+       
+       echo"<pre>"; 
+       print_r($array);
+       echo"</pre>";
+
+       echo "<br>";
+       echo "<hr>";
+
+       $die === true ? die : null;
+    }
+
+
 
     /**
      * Varre Array para segunraça

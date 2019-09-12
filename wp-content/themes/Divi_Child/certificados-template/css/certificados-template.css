@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:500,600&display=swap');
+
+
 .woocommerce #respond input#submit, .woocommerce-page #respond input#submit, .woocommerce #content input.button, .woocommerce-page #content input.button, .woocommerce-message, .woocommerce-error, .woocommerce-info {
     background: #fe9000 !important
 }
@@ -816,7 +819,13 @@ select.input{
     box-sizing: border-box;
 }
 
+/* Footer */
+
 .family_poppins{
     font-family: 'Poppins',Helvetica,Arial,Lucida,sans-serif;
-    font-weight: 500;
+    
+}
+
+.contact_footer p, .contact_footer h2, .adress_footer p, .adress_footer h2 {
+    margin-bottom: 0;
 }

@@ -242,34 +242,67 @@ $api = new GerenciadorCertificados('ecpf', $_POST);
                                         </div>
 
                                         <div class="col-sm-6">
+                                            
                                             <!--Modulo-->
                                             <p>
-                                                <label for="input_14" class="et_pb_contact_form_label">
-                                                    Senha de Gerenciamento do Certificado
+                                                <label for="input_15" class="et_pb_contact_form_label">
+                                                RG - Documento de Identificação
                                                 </label>
 
-                                                <input minlength="6" type="text" id="input_14" class="input"
-                                                       name="revogation_passphrase"
-                                                       placeholder="*Senha de Alteração do Certificado"
+                                                <input minlength="2" type="text" id="input_15" class="input"
+                                                    name="documento_identificacao"
+                                                    placeholder="RG - Documento de Identificação"
                                                 required>
                                             </p>
                                             <!--Modulo-->
                                         </div>
 
+                                        <div class="col-sm-6">
+                                            
+                                            <!--Modulo-->
+                                            <p>
+                                                <label for="input_14" class="et_pb_contact_form_label ">
+                                                    Senha de Gerenciamento do Certificado
+                                                </label>
+
+                                                <input minlength="6" type="password" id="input_14" class="input senha_1"
+                                                       name="revogation_passphrase"
+                                                       placeholder="*Senha de Gerenciamento do Certificado"
+                                                required>
+                                            </p>
+                                            <!--Modulo-->
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            
+                                            <!--Modulo-->
+                                            <p>
+                                                <label for="input_26" class="et_pb_contact_form_label ">
+                                                    Senha de Gerenciamento do Certificado
+                                                </label>
+
+                                                <input minlength="6" type="password" id="input_26" class="input senha_2"
+                                                       name="revogation_passphrase_2"
+                                                       placeholder="*Conferir Senha"
+                                                required>
+                                            </p>
+                                            <!--Modulo-->
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            
+                                            <!--Modulo-->
+                                            <div class="alert alert-info">
+                                            <p>
+                                                <b>Senha de Gerenciamento:</b> Esta senha é usada para a gestão do certificado (emissão, revogação, etc...), deve ser diferente da senha de acesso ao site. Por favor, guarde-a com você, pois vai ser necessária no futuro. A senha deve conter apenas letras ou números entre 6 e 10 caracteres.
+                                            </p>
+                                            </div>
+                                            <!--Modulo-->
+                                        </div>
+
                                     </div>
 
-                                    <!--Modulo-->
-                                    <p>
-                                        <label for="input_15" class="et_pb_contact_form_label">
-                                            Documento de Identificação
-                                        </label>
-
-                                        <input minlength="2" type="text" id="input_15" class="input"
-                                               name="documento_identificacao"
-                                               placeholder="Documento de Identificação"
-                                        required>
-                                    </p>
-                                    <!--Modulo-->
+                                           <!-- Sobre a senha -->
 
                                     <br>
                                     <h5 id="ancora_pos_envio">Endereço</h5>
@@ -321,7 +354,7 @@ $api = new GerenciadorCertificados('ecpf', $_POST);
                                                 </label>
 
                                                 <input type="text" id="input_12"
-                                                       class="disabled financial_neighborhood input"
+                                                       class="financial_neighborhood input"
                                                        name="financial_neighborhood"
                                                        placeholder="Bairro"
                                                        required>
@@ -336,7 +369,7 @@ $api = new GerenciadorCertificados('ecpf', $_POST);
                                                 </label>
 
                                                 <input type="text" id="input_10"
-                                                       class="disabled financial_address input"
+                                                       class="financial_address input"
                                                        name="financial_address"
                                                        placeholder="Endereço"
                                                        required>
@@ -354,7 +387,7 @@ $api = new GerenciadorCertificados('ecpf', $_POST);
                                                     Cidade
                                                 </label>
 
-                                                <input id="input_6" class="cidade disabled input"
+                                                <input id="input_6" class="cidade  input"
                                                        name="cidade"
                                                        placeholder="Cidade"
                                                        required/>
@@ -376,7 +409,7 @@ $api = new GerenciadorCertificados('ecpf', $_POST);
                                                     Estado
                                                 </label>
 
-                                                <input id="input_5" class="disabled financial_state input"
+                                                <input id="input_5" class=" financial_state input"
                                                        name="financial_state"
                                                        placeholder="Estado UF"
                                                        required/>
