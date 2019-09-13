@@ -118,21 +118,21 @@ jQuery(function ($) {
     // Conferência de senha ----------------------------------------
 
     // Se ouver Blur em algum dos campos, e os 2 campos já estão preencidos a conferência ocorrerá no Blur de algum dos campos
-    $('.senha_1').blur(function(){
-        
+    $('.senha_1').blur(function () {
+
         let senha1 = $('.senha_1').val();
         let senha2 = $('.senha_2').val();
-        if(senha1 && senha2 && senha1 !== senha2){
+        if (senha1 && senha2 && senha1 !== senha2) {
             $('.senha_1').val('');
             $('.senha_2').val('');
             $('#form-alert').html('<div class="alert alert-danger">Senhas não batem.</div>');
         }
     });
 
-    $('.senha_2').blur(function(){
+    $('.senha_2').blur(function () {
         let senha1 = $('.senha_1').val();
         let senha2 = $('.senha_2').val();
-        if(senha1 && senha2 && senha1 !== senha2){
+        if (senha1 && senha2 && senha1 !== senha2) {
             $('.senha_1').val('');
             $('.senha_2').val('');
             $('#form-alert').html('<div class="alert alert-danger">Senhas não batem.</div>');
@@ -143,6 +143,7 @@ jQuery(function ($) {
 
     // Campo CEP
     var cep = $('.cep_api');
+
 
     cep.on('blur', function (e) {
 
@@ -159,6 +160,7 @@ jQuery(function ($) {
         value = value[0] + value[1];
 
         var url = 'https://viacep.com.br/ws/' + value + '/json/';
+
 
         $.ajax({
             url: url,
@@ -181,6 +183,8 @@ jQuery(function ($) {
                     $('.financial_address').val(financial_address);
                     $('.financial_neighborhood').val(financial_neighborhood);
                     $('#form-alert').html('');
+
+
 
                 } else if (data['erro'] == true) {
 
@@ -209,6 +213,9 @@ jQuery(function ($) {
         });
 
 
+
+
+
     });
 
 
@@ -224,6 +231,3 @@ jQuery(function ($) {
 function q(q) {
     return document.querySelector(q);
 }
-
-
-document.addEventListener("mousewheel", this.mousewheel.bind(this), { passive: false });

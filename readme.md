@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.8] - 13-09-2019
+
+### Correção :wrench:
+- Erro de JS no ajax do CEP corrigido. Agora está funcionando no chrome de android.
+
 ## [1.0.7] - 12-09-2019
 
 ### Atualização :pushpin:
@@ -11,7 +16,6 @@
 
 - Testes NFE PROD boleto - ok.
 - Testes ECNPJ PROD boleto - ok.
-
 
 
 ## [1.0.5] - 11-09-2019
