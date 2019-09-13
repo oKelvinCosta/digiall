@@ -18,12 +18,12 @@ class DSBRAPISoapClient{
 	
 
 	// Testes atuais
-	public static $_WsdlUri='https://www-dev.digitalsigncertificadora.com.br/api2.1.php?WSDL';
+	// public static $_WsdlUri='https://www-dev.digitalsigncertificadora.com.br/api2.1.php?WSDL';
 	
 
 	// URL PROD
 	// Teste Prod 2 não sei se é o oficial, os preços estão mais altos
-	// public static $_WsdlUri='https://www.digitalsigncertificadora.com.br/api2.1.php?WSDL';
+	public static $_WsdlUri='https://www.digitalsigncertificadora.com.br/api2.1.php?WSDL';
 
 
 	

@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.7] - 12-09-2019
+
+### Atualização :pushpin:
+- Modo PROD.
+
 ## [1.0.6] - 12-09-2019
 
 ### Adição :rocket:
@@ -7,7 +12,7 @@
 - Testes NFE PROD boleto - ok.
 - Testes ECNPJ PROD boleto - ok.
 
-### Atualização :pushpin:
+
 
 ## [1.0.5] - 11-09-2019
 
